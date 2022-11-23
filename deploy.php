@@ -13,8 +13,8 @@ set ('ssh_multiplexing', false);
 set('git_tty', false);
 
 
-add('shared_files', []);
-add('shared_dirs', []);
+add('shared_files', ['.env']);
+add('shared_dirs', ['/public']);
 add('writable_dirs', []);
 
 // Hosts
