@@ -14,7 +14,7 @@ set('git_tty', false);
 
 
 add('shared_files', ['.env']);
-add('shared_dirs', ['/public']);
+add('shared_dirs', ['/public','/migrations']);
 add('writable_dirs', []);
 
 // Hosts
