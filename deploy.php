@@ -2,6 +2,8 @@
 namespace Deployer;
 
 require 'recipe/symfony.php';
+require 'contrib/yarn.php';
+require 'contrib/webpack_encore.php';
 
 // Config
 
@@ -27,6 +29,8 @@ host('localhost')
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
+    'yarn:install',
+    'webpack_encore:build',
     'deploy:cache:clear',
     'deploy:publish'
 ]);
