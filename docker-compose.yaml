@@ -1,35 +1,21 @@
-version: '3'
+# Use root/example as user/password credentials
+version: '3.1'
 
 services:
-###> doctrine/doctrine-bundle ###
-  apache:
-    image: seigetsu/httpd-sshd:2.4-alpine
-    ports:
-      - 2222:2222
-      - 8888:80
-    environment:
-      - ROOT_PASSWORD=password
 
   db:
     image: mysql
-# NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
-# (this is just an example, not intended to be a production configuration)
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    ports:
+      - 3306:3306
     environment:
-      MYSQL_ROOT_USER: admin
       MYSQL_ROOT_PASSWORD: password
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
-# You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
-volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+      - 8888:8080
