@@ -31,6 +31,7 @@ task('deploy', [
     'deploy:vendors',
     'yarn:install',
     'webpack_encore:build',
+    'database:migrate',
     'deploy:cache:clear',
     'deploy:publish'
 ]);
